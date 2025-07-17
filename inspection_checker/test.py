@@ -9,5 +9,6 @@ while True:
     if keyboard.is_pressed('esc'):
         print("检测到Esc，停止滚动。")
         break
+    
     pyautogui.scroll(-300)
     time.sleep(2)
