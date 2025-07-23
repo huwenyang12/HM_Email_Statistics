@@ -160,7 +160,8 @@ class InspectionChecker:
             total_checks += check_total
 
         # 控制台输出 + 邮件正文构建
-        log_and_collect(f"巡检日期：{date_str}")
+        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log_and_collect(f"巡检日期：{today}")
         log_and_collect(f"巡检概览（共 {platform_count} 份报告，{total_checks} 次应巡检）：")
         log_and_collect(f"成功：{total_hits} 次")
         log_and_collect(f"失败：{total_checks - total_hits} 次")
