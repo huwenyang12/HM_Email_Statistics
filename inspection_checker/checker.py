@@ -161,6 +161,8 @@ class InspectionChecker:
 
         # 控制台输出 + 邮件正文构建
         today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print("每日运行详情链接：https://365.kdocs.cn/l/caXs4y8639Re")
+        print("报告运行统计情况：")
         log_and_collect(f"巡检日期：{today}")
         log_and_collect(f"巡检概览（共 {platform_count} 份报告，{total_checks} 次应巡检）：")
         log_and_collect(f"成功：{total_hits} 次")
@@ -168,7 +170,7 @@ class InspectionChecker:
         log_and_collect(f"巡检中：{total_running} 次")
         log_and_collect(f"暂未巡检：{total_pending} 次")
         total_rate = round(total_hits / total_checks * 100, 1) if total_checks else 0.0
-        log_and_collect(f"成功率：{total_rate}%\n")
+        log_and_collect(f"成功率：{total_rate}%")
 
         log_and_collect("巡检异常平台：")
         for i, (platform, rate, failed_list) in enumerate(abnormal_platforms, start=1):

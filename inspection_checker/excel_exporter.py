@@ -27,6 +27,10 @@ def set_column_widths(worksheet, headers):
         header = headers[i]
         if '巡检时间' in header:
             worksheet.column_dimensions[col_letter].width = 12
+        elif '堡垒机' in header:
+            worksheet.column_dimensions[col_letter].width = 11
+        elif '机器' in header:
+            worksheet.column_dimensions[col_letter].width = 16
         elif '巡检结果' in header:
             worksheet.column_dimensions[col_letter].width = 15
         elif header == '成功率':
@@ -97,8 +101,31 @@ def append_summary_success_rate(worksheet, headers):
     cell.alignment = Alignment(horizontal="center", vertical="center")
 
 def export_to_excel(df, headers, file_path):
+    # 新列数据
+    bastion_col = [
+        "网管中心1", "网管中心1",
+        "网管中心2", "网管中心2", "网管中心2", "网管中心2",
+        "腾讯云1", "腾讯云1",
+        "腾讯云2", "腾讯云2", "腾讯云2"
+    ]
+
+    machine_col = [
+        "172.18.56.10", "172.18.56.10",
+        "172.18.56.11", "172.18.56.11", "172.18.56.11", "172.18.56.11",
+        "172.28.173.5", "172.28.173.5",
+        "172.28.173.9", "172.28.173.9（网2.11调用）", "172.28.173.9"
+    ]
+
+    # 在第二列（平台列）后插入这两列
+    insert_pos = 2  # 平台列之后
+    df.insert(insert_pos, "堡垒机", bastion_col)
+    df.insert(insert_pos + 1, "机器", machine_col)
+
+    # 更新表头
+    headers = headers[:insert_pos] + ["堡垒机", "机器"] + headers[insert_pos:]
+
     with pd.ExcelWriter(file_path, engine='openpyxl') as writer:
-        df.to_excel(writer, sheet_name='巡检统计', index=False)
+        df.to_excel(writer, sheet_name='巡检统计', index=False, header=headers)
         worksheet = writer.sheets['巡检统计']
         set_column_widths(worksheet, headers)
         apply_excel_styles(worksheet, headers)

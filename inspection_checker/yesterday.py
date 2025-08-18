@@ -37,8 +37,8 @@ send_emails = {
 }
 
 # 巡检日期配置
-# check_date = datetime(2025, 7, 13)  # 指定日期结果
-check_date = datetime.now() - timedelta(days=1)   # 昨天巡检结果
+check_date = datetime(2025, 7, 16)  # 指定日期结果
+# check_date = datetime.now() - timedelta(days=1)   # 昨天巡检结果
 # check_date = datetime.now()  # 今天巡检结果
 
 
