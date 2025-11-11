@@ -75,9 +75,9 @@ platform_schedules = {
         ("16:10", 30)
     ],
     '综合系统（腾讯云）-基础资源': [
-        ("08:30", 120), 
-        ("12:30", 120), 
-        ("13:50", 120), 
+        ("08:30", 60), 
+        ("12:30", 60), 
+        ("13:50", 60), 
         ("15:00", 60)
     ],
 }
@@ -89,9 +89,10 @@ send_emails = {
 }
 
 # 巡检日期配置
-# check_date = datetime(2025, 8, 16)  # 指定日期结果
-# check_date = datetime.now() - timedelta(days=1)   # 昨天巡检结果
 check_date = datetime.now()  # 今天巡检结果
+# check_date = datetime.now() - timedelta(days=1)   # 昨天巡检结果
+
+# check_date = datetime(2025, 10, 8)  # 指定日期结果
 
 
 if __name__ == "__main__":
